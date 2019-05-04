@@ -52,5 +52,3 @@ class Bot:
             finally:
                 break
 
-myBot = Bot()
-myBot.retweeter()
