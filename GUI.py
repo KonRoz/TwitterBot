@@ -1,56 +1,66 @@
-from tkinter import *
-import Bot
+import tkinter as tk
 
 
-newWindow = Tk()
+class Application(tk.Frame):
 
-# header of window
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.master = master
+        self.pack()
+        self.create_widgets()
 
-money_made = Label(newWindow, text="Christmas Twitter Bot Controller")
+    def create_widgets(self):
+        self.money_made = tk.Label(self, text="Christmas Twitter Bot Controller")
 
-# how many total retweets to process
-retweets = Label(newWindow, text='Number of ReTweets?')
-Er = Entry(newWindow)
+        # how many total retweets to process
+        self.retweets = tk.Label(self, text='Number of ReTweets?')
+        self.Er = tk.Entry(self)
 
-# how long will the computer be running the bot
-time_period = Label(newWindow, text='Time Period?')
-Et = Entry(newWindow)
+        # how long will the computer be running the bot
+        self.time_period = tk.Label(self, text='Time Period?')
+        self.Et = tk.Entry(self)
 
-# what word or phrase should the bot be looking for
-query = Label(newWindow, text='What word should the bot look for in tweets')
-Eq = Entry(newWindow)
+        # what word or phrase should the bot be looking for
+        self.query = tk.Label(self, text='What word should the bot look for in tweets')
+        self.Eq = tk.Entry(self)
 
-# what should the bot direct message certain users
-direct_message = Label(newWindow, text='What should the direct message be?')
-Ed = Entry(newWindow)
+        # what should the bot direct message certain users
+        self.direct_message = tk.Label(self, text='What should the direct message be?')
+        self.Ed = tk.Entry(self)
 
+        # the button that sets bot to run
+        self.run = tk.Button(self, text='Run Bot', command=self.on_click)
 
-# will result in a change of screen showing the progress of the bot
-def on_click():
-    print('Bot is running')
-    newWindow.destroy()
+        self.money_made.pack()
 
+        self.retweets.pack()
+        self.Er.pack()
 
-# the button that sets bot to run
-run = Button(newWindow, text='Run Bot', command=on_click)
+        self.time_period.pack()
+        self.Et.pack()
 
-# adding each field to the window
-money_made.pack()
+        self.query.pack()
+        self.Eq.pack()
 
-retweets.pack()
-Er.pack()
+        self.direct_message.pack()
+        self.Ed.pack()
 
-time_period.pack()
-Et.pack()
+        self.run.pack()
 
-query.pack()
-Eq.pack()
+    def on_click(self):
+        print('Bot is running')
+        if self.Et.get() == '0':
+            print('nice')
+        else:
+            self.destroy()
 
-direct_message.pack()
-Ed.pack()
+    def say_hi(self):
+        print("hi there, everyone!")
 
-run.pack()
+def run():
+    root = tk.Tk()
+    Application(root).pack(side="top", fill="both", expand=True)
+    root.mainloop()
 
-# Running the window
-newWindow.mainloop()
-
+if __name__ == "__main__":
+    run()
